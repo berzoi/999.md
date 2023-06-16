@@ -1,10 +1,11 @@
 package pages;
 
 import static com.codeborne.selenide.Selenide.$;
-import static core.ConfigProvider.XVM_21_LOGIN;
+import static com.microsoft.playwright.options.WaitUntilState.DOMCONTENTLOADED;
+import static utils.ConfigProvider.URL_999;
 
-import com.codeborne.selenide.SelenideElement;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Page.NavigateOptions;
 import core.BaseTest;
 
 
@@ -22,16 +23,10 @@ public class LogInPage extends BaseTest {
   }
 
   public void logIn (String login, String password) {
-
+    page.navigate(URL_999, new NavigateOptions().setWaitUntil(DOMCONTENTLOADED));
     page.click(logInButton);
     page.fill(userNameField, login);
     page.fill(passwordField, password);
     page.click(submitButton);
-//    page.evaluate("() => {\n" +
-//        "  const banner = document.querySelector('#banner');\n" +
-//        "  banner.remove();\n" +
-//        "}");
   }
-
-
 }

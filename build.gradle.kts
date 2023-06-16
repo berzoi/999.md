@@ -18,6 +18,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.28")
     implementation("com.typesafe:config:1.4.2")
     testImplementation("com.codeborne:selenide-selenoid:6.15.0")
+    implementation ("io.rest-assured:rest-assured-common:5.3.0")
+
 //    annotationProcessor("org.projectlombok:lombok:1.18.28")
 
 

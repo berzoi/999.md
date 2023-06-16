@@ -1,20 +1,16 @@
 package core;
 
-import static com.codeborne.selenide.Configuration.browser;
-import static com.codeborne.selenide.Configuration.holdBrowserOpen;
-import static com.codeborne.selenide.Configuration.timeout;
 import static com.codeborne.selenide.Selenide.open;
+import static utils.ConfigProvider.URL_999;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import java.util.List;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 
 public class BaseTest {
@@ -24,7 +20,8 @@ public class BaseTest {
 
   private BrowserContext context;
 
-  @BeforeClass(dependsOnGroups = {"Playwright"})
+//  @BeforeClass(dependsOnGroups = {"group1"})
+  @BeforeClass
   public void setUp() {
 
     browserPlaywright = Playwright
@@ -32,30 +29,17 @@ public class BaseTest {
         .chromium()
         .launch(new LaunchOptions()
             .setHeadless(true)
-            .setChannel("msedge"));
+            .setChannel("chrome"));
 
     context = browserPlaywright.newContext();
     page = context.newPage();
+
   }
-
-
-//  @BeforeSuite(dependsOnGroups = {"Selenide"})
-//  public void setUpSelenide(){
-//    browser = "chrome";
-//    timeout = 10000;
-//    holdBrowserOpen = true;
-//    browserPosition = "30x30";
-//    browserSize = "1500x500";
-//    headless = true;
-
-//  }
-
-
   @AfterClass(groups = "Playwright")
   public void tearDown(){
     if (browserPlaywright != null) {
+      context.close();
       browserPlaywright.close();
-      browserPlaywright = null;
     }
   }
 }
