@@ -40,7 +40,7 @@ public class Search999Test extends BaseTest {
 //    logInPage.logIn(ZOTAC522_LOGIN, ZOTAC522_PASSWORD);
     logInPage.logIn(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
 //    logInPage.logIn(XVM_2_LOGIN, XVM_2_PASSWORD);
-    addAdPage.addCar();
+    addAdPage.addCar("ro");
 //    try {
 //      Thread.sleep(50000);
 //    } catch (InterruptedException e) {

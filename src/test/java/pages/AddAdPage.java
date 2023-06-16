@@ -27,7 +27,8 @@ public class AddAdPage extends BaseTest {
       + "- Автомобиль в отличном техническом состоянии\n"
       + "- Практически новый\n"
       + "- Минимальный пробег\n"
-      + "- Один владелец";
+      + "- Один владелец\n"
+      + "- Контакты = QR коды, или чат 999.md";
 
   private final String textCarToAddRo = "Skoda Fabia 3 \n"
       + "- Pret listat     = 9.200€.\n"
@@ -39,7 +40,8 @@ public class AddAdPage extends BaseTest {
       + "- Masina este practic noua\n"
       + "- Parcurs minim\n"
       + "- Procurata de la Daac Hermes\n"
-      + "\n";
+      + "- Contacte = QR din poze, sau chat 999.md";
+
 //      + "Telegram canal: https://t.me/MTS_AutoVentas\n"
 //      + "Instagram:      https://www.instagram.com/p/CthLp1ZootP";
 
@@ -139,9 +141,9 @@ public class AddAdPage extends BaseTest {
 //    System.out.println(numberOfNotifications != 0
 //        ? "There are " + numberOfNotifications + " notifications for the user:       " + user
 //        : "There are no notifications for the:           " + user);
-    System.out.println("--->" + user);
+    System.out.println("---> " + user);
     System.out.println("Notifications = " + numberOfNotifications);
-    System.out.println("Hidden adds= " + getNumberOhHiddenAdds());
+    System.out.println("Hidden adds   = " + getNumberOhHiddenAdds());
     System.out.println("========================");
   }
 
@@ -263,50 +265,52 @@ public class AddAdPage extends BaseTest {
   }
 
 
-  public void addCar() {
+  public void addCar(String roOrRus) {
     setUp();
     page.click(selectTransportCategory);
     page.click(selectCarSubCategory);
 //    if (checkWarningLimit() == true) {
-      page.selectOption(make, "143");
-      page.selectOption(model, "170");
-      page.selectOption(registration, "18592");
-      page.selectOption(condition, "18668");
-      page.selectOption(stock, "29670");
-      page.selectOption(market, "29677");
-      page.fill(adTextForm, textCarToAddRo);
-//      page.fill(adTextForm, textCarToAddRus);
-      page.fill(tagTextForm, tagToAdd);
-      page.fill(price, "9200");
-      page.selectOption(addAuthor, "18895");
-      page.fill(yearOfManufacture, "2019");
-      page.selectOption(steeringWheel, "21979");
-      page.selectOption(numberSeats, "19119");
-      page.selectOption(bodyType, "11");
-      page.fill(mileage, "22800");
-      page.fill(engineCapacity, "999");
-      page.fill(enginePower, "75");
-      page.selectOption(fuelType, "10");
-      page.selectOption(transmissionType, "4");
-      page.selectOption(privod, "5");
-      page.selectOption(colour, "19");
-      page.setInputFiles(uploadPictureButton, new Path[]{
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic1.jpg"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic2.jpg"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic3.jpg"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic4.jpg"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic5.jpg"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic6.jpg"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic7.png"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic8.png"),
-          Paths.get("G:\\My Drive\\999\\Fabia\\pic9.jpg")});
-      try {
-        Thread.sleep(10000);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-      page.click(agreeButton);
-      page.click(submitButton);
+    page.selectOption(make, "143");
+    page.selectOption(model, "170");
+    page.selectOption(registration, "18592");
+    page.selectOption(condition, "18668");
+    page.selectOption(stock, "29670");
+    page.selectOption(market, "29677");
+
+    String language = roOrRus.equals("ro") ? textCarToAddRo : textCarToAddRus;
+
+    page.fill(adTextForm, language);
+    page.fill(tagTextForm, tagToAdd);
+    page.fill(price, "9200");
+    page.selectOption(addAuthor, "18895");
+    page.fill(yearOfManufacture, "2019");
+    page.selectOption(steeringWheel, "21979");
+    page.selectOption(numberSeats, "19119");
+    page.selectOption(bodyType, "11");
+    page.fill(mileage, "22800");
+    page.fill(engineCapacity, "999");
+    page.fill(enginePower, "75");
+    page.selectOption(fuelType, "10");
+    page.selectOption(transmissionType, "4");
+    page.selectOption(privod, "5");
+    page.selectOption(colour, "19");
+    page.setInputFiles(uploadPictureButton, new Path[]{
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic1.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic2.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic3.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic4.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic5.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic6.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic7.png"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic8.png"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic9.jpg")});
+    try {
+      Thread.sleep(10000);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+    page.click(agreeButton);
+//    page.click(submitButton);
 //    } else {
 //      System.out.println("Вы исчерпали месячный лимит бесплатных объявлений в данной подкатегории");
 //    }
