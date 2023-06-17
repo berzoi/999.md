@@ -40,6 +40,7 @@ public class AddAdPage extends BaseTest {
       + "- Masina este practic noua\n"
       + "- Parcurs minim\n"
       + "- Procurata de la Daac Hermes\n"
+      + "- Sunt primul proprietar a masinei\n"
       + "- Contacte = QR din poze, sau chat 999.md";
 
 //      + "Telegram canal: https://t.me/MTS_AutoVentas\n"
@@ -303,7 +304,7 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\Fabia\\pic6.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic7.png"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic8.png"),
-        Paths.get("G:\\My Drive\\999\\Fabia\\pic9.jpg")});
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic9.png")});
     try {
       Thread.sleep(10000);
     } catch (InterruptedException e) {

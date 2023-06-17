@@ -29,7 +29,8 @@ public class BaseTest {
         .chromium()
         .launch(new LaunchOptions()
             .setHeadless(true)
-            .setChannel("chrome"));
+            .setChannel("chrome")
+            .setSlowMo(50));
 
     context = browserPlaywright.newContext();
     page = context.newPage();
