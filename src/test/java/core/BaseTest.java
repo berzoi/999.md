@@ -2,6 +2,8 @@ package core;
 
 import static com.codeborne.selenide.Selenide.open;
 import static utils.ConfigProvider.URL_999;
+import static utils.DataEnum.CONTEXT;
+import static utils.ScenarioContext.getScenarioContext;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
@@ -33,6 +35,7 @@ public class BaseTest {
             .setSlowMo(50));
 
     context = browserPlaywright.newContext();
+    getScenarioContext().saveData(CONTEXT, context);
     page = context.newPage();
 
   }

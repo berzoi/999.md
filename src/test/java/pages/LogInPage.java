@@ -9,7 +9,7 @@ import com.microsoft.playwright.Page.NavigateOptions;
 import core.BaseTest;
 
 
-public class LogInPage extends BaseTest {
+public class LogInPage{
   private final Page page;
 
   private final String logInButton = "[data-autotest='login']";

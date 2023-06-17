@@ -25,6 +25,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AddAdPage;
 import pages.LogInPage;
+import pages.RegistrationPage;
 
 
 public class Search999Test extends BaseTest {
@@ -108,5 +109,12 @@ public class Search999Test extends BaseTest {
 
     addAdPage.logOut(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
     addAdPage.getNotifications(USERMDD_02_USER);
+  }
+
+  @Test
+  public void abc(){
+    RegistrationPage registrationPage = new RegistrationPage(page);
+    registrationPage.registerUser();
+
   }
 }

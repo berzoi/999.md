@@ -19,6 +19,7 @@ dependencies {
     implementation("com.typesafe:config:1.4.2")
     testImplementation("com.codeborne:selenide-selenoid:6.15.0")
     implementation ("io.rest-assured:rest-assured-common:5.3.0")
+    implementation ("com.github.javafaker:javafaker:1.0.2")
 
 //    annotationProcessor("org.projectlombok:lombok:1.18.28")
 

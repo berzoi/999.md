@@ -8,13 +8,12 @@ import core.ActionsHelper;
 import core.BaseTest;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddAdPage extends BaseTest {
 
   private final Page page;
-  ActionsHelper actionsHelper = new ActionsHelper();
+//  ActionsHelper actionsHelper = new ActionsHelper(page);
 
   public AddAdPage(Page page) {
     this.page = page;
