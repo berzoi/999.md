@@ -31,6 +31,11 @@ import pages.RegistrationPage;
 public class Search999Test extends BaseTest {
 
 
+
+
+  String login = "winfredgraham";
+  String password = "Winfredgraham$";
+
   @Test
   public void skodaFabia() {
 
@@ -39,8 +44,10 @@ public class Search999Test extends BaseTest {
 //    logInPage.logIn(XVM_21_LOGIN, XVM_21_PASSWORD);
 //    logInPage.logIn(DOUBLE_A_LOGIN, DOUBLE_A_PASSWORD);
 //    logInPage.logIn(ZOTAC522_LOGIN, ZOTAC522_PASSWORD);
-    logInPage.logIn(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
+//    logInPage.logIn(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
 //    logInPage.logIn(XVM_2_LOGIN, XVM_2_PASSWORD);
+    logInPage.logIn(login, password);
+
     addAdPage.addCar("ro");
 //    try {
 //      Thread.sleep(50000);
@@ -109,6 +116,11 @@ public class Search999Test extends BaseTest {
 
     addAdPage.logOut(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
     addAdPage.getNotifications(USERMDD_02_USER);
+
+    addAdPage.logOut("winfredgraham", "Winfredgraham$");
+    addAdPage.getNotifications("winfredgraham");
+
+
   }
 
   @Test

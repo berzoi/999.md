@@ -27,10 +27,10 @@ public class AddAdPage extends BaseTest {
       + "- ѕрактически новый\n"
       + "- ћинимальный пробег\n"
       + "- ќдин владелец\n"
-      + "-  онтакты = QR коды, или чат 999.md";
+      + "- QR коды, или чат 999.md";
 
   private final String textCarToAddRo = "Skoda Fabia 3 \n"
-      + "- Pret listat     = 9.200И.\n"
+      + "- Pret listat     = 8.950И.\n"
       + "- Pret 'ultimul pret' = 8.800И.\n"
       + "- 2019 a.f.\n"
       + "- 22.800 km.\n"
@@ -40,7 +40,7 @@ public class AddAdPage extends BaseTest {
       + "- Parcurs minim\n"
       + "- Procurata de la Daac Hermes\n"
       + "- Sunt primul proprietar a masinei\n"
-      + "- Contacte = QR din poze, sau chat 999.md";
+      + "- QR din poze, sau chat 999.md";
 
 //      + "Telegram canal: https://t.me/MTS_AutoVentas\n"
 //      + "Instagram:      https://www.instagram.com/p/CthLp1ZootP";
@@ -82,6 +82,7 @@ public class AddAdPage extends BaseTest {
   private final String transmissionType = "[name='101']";
   private final String privod = "[name='108']";
   private final String colour = "[name='17']";
+  private final String region = "[name='7']";
   private final String uploadPictureButton = "input#fileupload-file-input";
   private final String uploadPictureButton2 = "[id='fileupload-button']";
   private final String agreeButton = "[id='agree']";
@@ -281,8 +282,9 @@ public class AddAdPage extends BaseTest {
 
     page.fill(adTextForm, language);
     page.fill(tagTextForm, tagToAdd);
-    page.fill(price, "9200");
+    page.fill(price, "8950");
     page.selectOption(addAuthor, "18895");
+    page.selectOption(region, "12900");
     page.fill(yearOfManufacture, "2019");
     page.selectOption(steeringWheel, "21979");
     page.selectOption(numberSeats, "19119");
@@ -310,7 +312,7 @@ public class AddAdPage extends BaseTest {
       throw new RuntimeException(e);
     }
     page.click(agreeButton);
-//    page.click(submitButton);
+    page.click(submitButton);
 //    } else {
 //      System.out.println("¬ы исчерпали мес€чный лимит бесплатных объ€влений в данной подкатегории");
 //    }
