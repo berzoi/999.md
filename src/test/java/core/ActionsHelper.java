@@ -33,4 +33,11 @@ public class ActionsHelper {
   public void openLink (String url){
     page.navigate(url, new NavigateOptions().setWaitUntil(DOMCONTENTLOADED));
   }
+  public void waiter (int timeToWait){
+    try {
+      Thread.sleep(timeToWait);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }

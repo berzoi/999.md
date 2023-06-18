@@ -1,6 +1,7 @@
 package core;
 
 import static com.codeborne.selenide.Selenide.open;
+import static tests.Search999Test.setHeadless;
 import static utils.ConfigProvider.URL_999;
 import static utils.DataEnum.CONTEXT;
 import static utils.ScenarioContext.getScenarioContext;
@@ -30,7 +31,7 @@ public class BaseTest {
         .create()
         .chromium()
         .launch(new LaunchOptions()
-            .setHeadless(true)
+            .setHeadless(setHeadless)
             .setChannel("chrome")
             .setSlowMo(50));
 

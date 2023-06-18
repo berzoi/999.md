@@ -3,7 +3,6 @@ package tests;
 import static utils.ConfigProvider.DOUBLE_A_LOGIN;
 import static utils.ConfigProvider.DOUBLE_A_PASSWORD;
 import static utils.ConfigProvider.DOUBLE_A_USER;
-import static utils.ConfigProvider.URL_999;
 import static utils.ConfigProvider.USERMDD_02_LOGIN;
 import static utils.ConfigProvider.USERMDD_02_PASSWORD;
 import static utils.ConfigProvider.USERMDD_02_USER;
@@ -16,10 +15,9 @@ import static utils.ConfigProvider.XVM_2_USER;
 import static utils.ConfigProvider.ZOTAC522_LOGIN;
 import static utils.ConfigProvider.ZOTAC522_PASSWORD;
 import static utils.ConfigProvider.ZOTAC522_USER;
-import static utils.ConfigProvider.readConfig;
 
 
-import com.codeborne.selenide.Selenide;
+import core.ActionsHelper;
 import core.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -30,8 +28,7 @@ import pages.RegistrationPage;
 
 public class Search999Test extends BaseTest {
 
-
-
+  public static Boolean setHeadless = true;
 
   String login = "winfredgraham";
   String password = "Winfredgraham$";
@@ -48,12 +45,17 @@ public class Search999Test extends BaseTest {
 //    logInPage.logIn(XVM_2_LOGIN, XVM_2_PASSWORD);
     logInPage.logIn(login, password);
 
-    addAdPage.addCar("ro");
-//    try {
-//      Thread.sleep(50000);
-//    } catch (InterruptedException e) {
-//      throw new RuntimeException(e);
-//    }
+    addAdPage.addCar("rus", "yes");
+    Assert.assertTrue(page.isVisible("[class='success_icon']"));
+  }
+
+  @Test
+  public void pillow(){
+    LogInPage logInPage = new LogInPage(page);
+    AddAdPage addAdPage = new AddAdPage(page);
+    logInPage.logIn(login, password);
+
+    addAdPage.getPillow();
     Assert.assertTrue(page.isVisible("[class='success_icon']"));
   }
 

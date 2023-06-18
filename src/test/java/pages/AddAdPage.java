@@ -12,8 +12,8 @@ import java.util.List;
 
 public class AddAdPage extends BaseTest {
 
-  private final Page page;
-//  ActionsHelper actionsHelper = new ActionsHelper(page);
+  private Page page;
+  ActionsHelper actionsHelper = new ActionsHelper(page);
 
   public AddAdPage(Page page) {
     this.page = page;
@@ -27,10 +27,10 @@ public class AddAdPage extends BaseTest {
       + "- Практически новый\n"
       + "- Минимальный пробег\n"
       + "- Один владелец\n"
-      + "- QR коды, или чат 999.md";
+      + "- QR коды, или чат 999.md\n"
+      + "- 06011.8853";
 
   private final String textCarToAddRo = "Skoda Fabia 3 \n"
-      + "- Pret listat     = 8.950€.\n"
       + "- Pret 'ultimul pret' = 8.800€.\n"
       + "- 2019 a.f.\n"
       + "- 22.800 km.\n"
@@ -40,7 +40,8 @@ public class AddAdPage extends BaseTest {
       + "- Parcurs minim\n"
       + "- Procurata de la Daac Hermes\n"
       + "- Sunt primul proprietar a masinei\n"
-      + "- QR din poze, sau chat 999.md";
+      + "- QR din poze, sau chat 999.md\n"
+      + "- 06011.8853";
 
 //      + "Telegram canal: https://t.me/MTS_AutoVentas\n"
 //      + "Instagram:      https://www.instagram.com/p/CthLp1ZootP";
@@ -54,12 +55,15 @@ public class AddAdPage extends BaseTest {
 //
   private final String textSSDToAdd = "Kingston NV2 500Gb, PCIe 4.0, NVMe\n"
     + "=============================\n"
-    + "Новые, запечатанные, оригинальные";
+    + "Новые, запечатанные, оригинальные\n"
+    + "=============================\n"
+    + "06011.8853";
 
   private final String closePopUp = "[class='header_menu_nav__cart_popup_action']";
   private final String addAdButton = "[id='js-add-ad']";
   private final String selectTransportCategory = "[href*='transport']";
   private final String selectCarSubCategory = "[href*='transport/cars']";
+  private final String selectCarSubCategoryInterior = "[href*='transport/interior-accessories']";
   private final String adTextForm = "#control_13";
   private final String tagTextForm = "#control_1404";
   private final String price = "[name='2']";
@@ -91,8 +95,8 @@ public class AddAdPage extends BaseTest {
   private final String selectMiceCategory = "[href*='mice-joysticks']";
   private final String selectSSDSubCategory = "[href*='hdd']";
   private final String title = "[name='12']";
-  private final String type = "[name='686'], [name='724']";
-  private final String manufacturer = "[name='672'], [name='723']";
+  private final String type = "[name='686'], [name='724'], [name='1460']";
+  private final String manufacturer = "[name='672'], [name='723'], [name='1461']";
   private final String formFactor = "[name='951']";
   private final String size = "[name='950']";
   private final String ssdInterface = "[name='952']";
@@ -103,6 +107,8 @@ public class AddAdPage extends BaseTest {
   private final String connectionType = "[name='962']";
   private final String warningLimit = "[href='https://999.md/info/rules#pages-rule2']";
   private final String notification = "[class='user-item-btn-chat-unreaded']";
+  private final String phoneCheckbox = "[class*='phone'] [type='checkbox']";
+  private final String phoneswitcher = "[class='icon icon-switcher']";
 
   public boolean checkWarningLimit() {
     if (page.querySelector(warningLimit).isVisible()) {
@@ -170,11 +176,7 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\Logitech\\pic2.jpg"),
         Paths.get("G:\\My Drive\\999\\Logitech\\pic3.jpg")});
 
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    actionsHelper.waiter(5000);
     page.click(agreeButton);
     page.click(submitButton);
   }
@@ -200,11 +202,8 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\HDD\\Orico\\pic3.jpg"),
         Paths.get("G:\\My Drive\\999\\HDD\\Orico\\pic4.jpg"),
         Paths.get("G:\\My Drive\\999\\HDD\\Orico\\pic5.jpg")});
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+
+    actionsHelper.waiter(5000);
     page.click(agreeButton);
     page.click(submitButton);
 
@@ -219,7 +218,10 @@ public class AddAdPage extends BaseTest {
         + "\n"
         + "Наушники сделаны для американского рынка и куплены в США.\n"
         + "\n"
-        + "Граждане МОШЕННИКИ - Почтой и курьером не отправляю.");
+        + "Граждане МОШЕННИКИ - Почтой и курьером не отправляю."
+        + "=============================\n"
+        + "06011.8853");
+
     page.fill(tagTextForm, "SoundCore, Q35, Anker");
     page.fill(price, "2100");
     page.selectOption(manufacturer, "26189");
@@ -230,11 +232,8 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\Q35\\pic1.jpg"),
         Paths.get("G:\\My Drive\\999\\Q35\\pic2.jpg"),
         Paths.get("G:\\My Drive\\999\\Q35\\pic3.jpg")});
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+
+    actionsHelper.waiter(5000);
     page.click(agreeButton);
     page.click(submitButton);
   }
@@ -256,17 +255,14 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\SSD\\New folder\\pic2.jpg"),
         Paths.get("G:\\My Drive\\999\\SSD\\New folder\\pic3.jpg")});
     page.waitForSelector(removeButton, new Page.WaitForSelectorOptions().setState(VISIBLE));
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+
+    actionsHelper.waiter(5000);
     page.click(agreeButton);
     page.click(submitButton);
   }
 
 
-  public void addCar(String roOrRus) {
+  public void addCar(String roOrRus, String switcher) {
     setUp();
     page.click(selectTransportCategory);
     page.click(selectCarSubCategory);
@@ -306,15 +302,49 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\Fabia\\pic7.png"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic8.png"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic9.png")});
-    try {
-      Thread.sleep(10000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+
+    actionsHelper.waiter(5000);
+
+    if (switcher.equals("yes")){
+      page.click(phoneCheckbox);
+      page.click(phoneswitcher);
     }
+
     page.click(agreeButton);
     page.click(submitButton);
 //    } else {
 //      System.out.println("Вы исчерпали месячный лимит бесплатных объявлений в данной подкатегории");
 //    }
+  }
+
+  public void getPillow() {
+    setUp();
+    page.click(selectTransportCategory);
+    page.click(selectCarSubCategoryInterior);
+
+    String pillowAddTitle = "Ортопедическая подушка поясничной поддержки с эффектом памяти";
+    page.fill(title, pillowAddTitle);
+    page.fill(adTextForm, "=============================\n" + "06011.8853");
+    page.fill(price, "750");
+    page.selectOption(priceCurrencySelect, "mdl");
+    page.selectOption(manufacturer, "25319");
+    page.selectOption(type, "25305");
+    page.setInputFiles(uploadPictureButton, new Path[]{
+            Paths.get("G:\\My Drive\\999\\Car\\pic1.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic2.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic3.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic4.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic5.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic6.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic7.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic8.jpg"),
+            Paths.get("G:\\My Drive\\999\\Car\\pic9.jpg")});
+    actionsHelper.waiter(5000);
+    page.click(phoneCheckbox);
+    page.click(phoneswitcher);
+    page.click(agreeButton);
+    actionsHelper.waiter(50000);
+
+//    page.click(submitButton);
   }
 }
