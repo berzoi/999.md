@@ -44,19 +44,6 @@ public class ActionsHelper {
     }
   }
 
-  public void getNumberOAttribute() {
-    List<ElementHandle> elements = page.querySelectorAll("[data-test-item-type='standard']");
-    Map<String, Integer> elementCount = new HashMap<>();
-
-    for (ElementHandle element : elements) {
-      String attributeValue = element.getAttribute("data-test-item-state");
-      elementCount.put(attributeValue, elementCount.getOrDefault(attributeValue, 0) + 1);
-    }
-
-    for (Map.Entry<String, Integer> entry : elementCount.entrySet()) {
-      System.out.println(entry.getKey() + ": " + entry.getValue());
-    }
-  }
 
   //  public void getNumberOAttribute() {
 //

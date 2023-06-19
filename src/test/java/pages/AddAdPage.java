@@ -7,7 +7,11 @@ import static utils.Constants.TEXT_CAR_RUS;
 import static utils.Constants.TEXT_SSD_ADD;
 import static utils.Constants.TEXT_SSD_TITLE;
 
+import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import utils.ActionsHelper;
 import core.BaseTest;
 import java.nio.file.Path;
@@ -83,15 +87,31 @@ public class AddAdPage extends BaseTest {
     page.click("[type='submit']");
   }
 
+  public void getNumberOAttribute() {
+    List<ElementHandle> elements = page.querySelectorAll("[data-test-item-type='standard']");
+    Map<String, Integer> elementCount = new HashMap<>();
+
+    for (ElementHandle element : elements) {
+      String attributeValue = element.getAttribute("data-test-item-state");
+      elementCount.put(attributeValue, elementCount.getOrDefault(attributeValue, 0) + 1);
+    }
+
+    for (Map.Entry<String, Integer> entry : elementCount.entrySet()) {
+      System.out.println(entry.getKey() + ": " + entry.getValue());
+    }
+  }
+
+
   public void getNotifications(String user) {
     page.hover("[id='m__user_panel']");
     page.click("a[href='/cabinet/items']");
-//    int numberOfNotifications = Integer.parseInt(page.frameLocator("#topbar-panel").locator(notification).innerText());
+    int numberOfNotifications = Integer.parseInt(page.frameLocator("#topbar-panel").locator(notification).innerText());
 //    System.out.println(numberOfNotifications != 0
 //        ? "There are " + numberOfNotifications + " notifications for the user:       " + user
 //        : "There are no notifications for the:           " + user);
     System.out.println("---> " + user);
-    actionsHelper.getNumberOAttribute();
+    System.out.println("Notifications = " + numberOfNotifications);
+    getNumberOAttribute();
     System.out.println("========================");
   }
 
@@ -220,7 +240,7 @@ public class AddAdPage extends BaseTest {
 
     page.fill(adTextForm, language);
     page.fill(tagTextForm, TAG_CAR);
-    page.fill(price, "8950");
+    page.fill(price, "8500");
     page.selectOption(addAuthor, "18895");
     page.selectOption(region, "12900");
     page.fill(yearOfManufacture, "2019");
