@@ -1,21 +1,13 @@
 package pages;
 
-import static com.codeborne.selenide.Configuration.browser;
-import static com.microsoft.playwright.options.WaitUntilState.DOMCONTENTLOADED;
-import static utils.ConfigProvider.URL_999;
 import static utils.DataEnum.CONTEXT;
 import static utils.DataEnum.USER_EMAIL;
 import static utils.ScenarioContext.getScenarioContext;
 
 import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.ElementHandle;
-import com.microsoft.playwright.Keyboard;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Page.NavigateOptions;
-import core.ActionsHelper;
+import utils.ActionsHelper;
 import java.util.List;
-import org.testng.annotations.Test;
-import utils.DataEnum;
 import utils.JavaFaker;
 
 public class RegistrationPage {
@@ -62,9 +54,5 @@ public class RegistrationPage {
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
-
-
   }
-
-
 }

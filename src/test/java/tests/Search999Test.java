@@ -17,13 +17,11 @@ import static utils.ConfigProvider.ZOTAC522_PASSWORD;
 import static utils.ConfigProvider.ZOTAC522_USER;
 
 
-import core.ActionsHelper;
 import core.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AddAdPage;
 import pages.LogInPage;
-import pages.RegistrationPage;
 
 
 public class Search999Test extends BaseTest {
@@ -39,14 +37,12 @@ public class Search999Test extends BaseTest {
     LogInPage logInPage = new LogInPage(page);
     AddAdPage addAdPage = new AddAdPage(page);
 //    logInPage.logIn(XVM_21_LOGIN, XVM_21_PASSWORD);
-//    logInPage.logIn(DOUBLE_A_LOGIN, DOUBLE_A_PASSWORD);
+    logInPage.logIn(DOUBLE_A_LOGIN, DOUBLE_A_PASSWORD);
 //    logInPage.logIn(ZOTAC522_LOGIN, ZOTAC522_PASSWORD);
 //    logInPage.logIn(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
 //    logInPage.logIn(XVM_2_LOGIN, XVM_2_PASSWORD);
-    logInPage.logIn(login, password);
-
-    addAdPage.addCar("rus", "yes");
-    Assert.assertTrue(page.isVisible("[class='success_icon']"));
+//    logInPage.logIn(login, password);
+    addAdPage.addCar("rus", "no", "stop");
   }
 
   @Test
@@ -122,13 +118,6 @@ public class Search999Test extends BaseTest {
     addAdPage.logOut("winfredgraham", "Winfredgraham$");
     addAdPage.getNotifications("winfredgraham");
 
-
-  }
-
-  @Test
-  public void abc(){
-    RegistrationPage registrationPage = new RegistrationPage(page);
-    registrationPage.registerUser();
 
   }
 }

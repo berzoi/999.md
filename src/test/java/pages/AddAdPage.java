@@ -1,14 +1,19 @@
 package pages;
 
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
+import static utils.Constants.TAG_CAR;
+import static utils.Constants.TEXT_CAR_RO;
+import static utils.Constants.TEXT_CAR_RUS;
+import static utils.Constants.TEXT_SSD_ADD;
+import static utils.Constants.TEXT_SSD_TITLE;
 
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
-import core.ActionsHelper;
+import utils.ActionsHelper;
 import core.BaseTest;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+
+import org.testng.Assert;
 
 public class AddAdPage extends BaseTest {
 
@@ -19,47 +24,6 @@ public class AddAdPage extends BaseTest {
     this.page = page;
   }
 
-  private final String textCarToAddRus = "Skoda Fabia 3 \n"
-      + "- 2019 г.в.\n"
-      + "- 22.800 км.\n"
-      + "- 999cm\n"
-      + "- Автомобиль в отличном техническом состоянии\n"
-      + "- Практически новый\n"
-      + "- Минимальный пробег\n"
-      + "- Один владелец\n"
-      + "- QR коды, или чат 999.md\n"
-      + "- 06011.8853";
-
-  private final String textCarToAddRo = "Skoda Fabia 3 \n"
-      + "- Pret 'ultimul pret' = 8.800€.\n"
-      + "- 2019 a.f.\n"
-      + "- 22.800 km.\n"
-      + "- 999cm\n"
-      + "- Masina e in stare tehnica excelenta\n"
-      + "- Masina este practic noua\n"
-      + "- Parcurs minim\n"
-      + "- Procurata de la Daac Hermes\n"
-      + "- Sunt primul proprietar a masinei\n"
-      + "- QR din poze, sau chat 999.md\n"
-      + "- 06011.8853";
-
-//      + "Telegram canal: https://t.me/MTS_AutoVentas\n"
-//      + "Instagram:      https://www.instagram.com/p/CthLp1ZootP";
-
-
-  private final String tagToAdd = "Skoda, Fabia, Skoda Fabia, Skoda Fabia 3, новая, новый";
-  private final String textSSDToAddTitle = "Kingston NV2 500Gb PCIe 4.0 — 2шт по 620/шт или 1 шт по 670";
-//  private final String textSSDToAdd = "Nou, sigilat, original\n"
-//      + "Новый, запечатанный, оригинальный\n"
-//      + "Kingston NV2 500Gb, PCIe 4.0, NVMe";
-//
-  private final String textSSDToAdd = "Kingston NV2 500Gb, PCIe 4.0, NVMe\n"
-    + "=============================\n"
-    + "Новые, запечатанные, оригинальные\n"
-    + "=============================\n"
-    + "06011.8853";
-
-  private final String closePopUp = "[class='header_menu_nav__cart_popup_action']";
   private final String addAdButton = "[id='js-add-ad']";
   private final String selectTransportCategory = "[href*='transport']";
   private final String selectCarSubCategory = "[href*='transport/cars']";
@@ -110,16 +74,7 @@ public class AddAdPage extends BaseTest {
   private final String phoneCheckbox = "[class*='phone'] [type='checkbox']";
   private final String phoneswitcher = "[class='icon icon-switcher']";
 
-  public boolean checkWarningLimit() {
-    if (page.querySelector(warningLimit).isVisible()) {
-      return true;
-    }
-    return false;
-  }
-
-
-
-  public void logOut(String login, String password){
+  public void logOut(String login, String password) {
     page.frameLocator("#topbar-panel").locator("[id='user-username-btn']").hover();
     page.frameLocator("#topbar-panel").locator("button[data-autotest='logout']").click();
     page.click("[data-autotest='login']");
@@ -128,33 +83,20 @@ public class AddAdPage extends BaseTest {
     page.click("[type='submit']");
   }
 
-  public int getNumberOhHiddenAdds() {
-    List<ElementHandle> elements = page.querySelectorAll("[data-test-item-type='standard']");
-    int count = 0;
-
-    for (ElementHandle element : elements) {
-      String attributeValue = element.getAttribute("data-test-item-state");
-      if (!attributeValue.equals("public")) {
-        count++;
-      }
-    }
-    return count;
-  }
-
-  public void getNotifications(String user){
+  public void getNotifications(String user) {
     page.hover("[id='m__user_panel']");
     page.click("a[href='/cabinet/items']");
-    int numberOfNotifications = Integer.parseInt(page.frameLocator("#topbar-panel").locator(notification).innerText());
+//    int numberOfNotifications = Integer.parseInt(page.frameLocator("#topbar-panel").locator(notification).innerText());
 //    System.out.println(numberOfNotifications != 0
 //        ? "There are " + numberOfNotifications + " notifications for the user:       " + user
 //        : "There are no notifications for the:           " + user);
     System.out.println("---> " + user);
-    System.out.println("Notifications = " + numberOfNotifications);
-    System.out.println("Hidden adds   = " + getNumberOhHiddenAdds());
+    actionsHelper.getNumberOAttribute();
     System.out.println("========================");
   }
 
   public void setUp() {
+    String closePopUp = "[class='header_menu_nav__cart_popup_action']";
     if (page.querySelector(closePopUp) != null) {
       page.click(closePopUp);
 
@@ -242,8 +184,8 @@ public class AddAdPage extends BaseTest {
     setUp();
     page.click(selectPcCategory);
     page.click(selectSSDSubCategory);
-    page.fill(title, textSSDToAddTitle);
-    page.fill(adTextForm, textSSDToAdd);
+    page.fill(title, TEXT_SSD_TITLE);
+    page.fill(adTextForm, TEXT_SSD_ADD);
     page.fill(price, "620");
     page.selectOption(type, "20734");
     page.selectOption(manufacturer, "24698");
@@ -262,7 +204,7 @@ public class AddAdPage extends BaseTest {
   }
 
 
-  public void addCar(String roOrRus, String switcher) {
+  public void addCar(String roOrRus, String switcher, String stopBeforeSubmit) {
     setUp();
     page.click(selectTransportCategory);
     page.click(selectCarSubCategory);
@@ -274,10 +216,10 @@ public class AddAdPage extends BaseTest {
     page.selectOption(stock, "29670");
     page.selectOption(market, "29677");
 
-    String language = roOrRus.equals("ro") ? textCarToAddRo : textCarToAddRus;
+    String language = roOrRus.equals("ro") ? TEXT_CAR_RO : TEXT_CAR_RUS;
 
     page.fill(adTextForm, language);
-    page.fill(tagTextForm, tagToAdd);
+    page.fill(tagTextForm, TAG_CAR);
     page.fill(price, "8950");
     page.selectOption(addAuthor, "18895");
     page.selectOption(region, "12900");
@@ -305,13 +247,22 @@ public class AddAdPage extends BaseTest {
 
     actionsHelper.waiter(5000);
 
-    if (switcher.equals("yes")){
+    if (switcher.equals("yes")) {
       page.click(phoneCheckbox);
       page.click(phoneswitcher);
     }
 
     page.click(agreeButton);
-    page.click(submitButton);
+
+    if (!stopBeforeSubmit.equals("stop")){
+      page.click(submitButton);
+      Assert.assertTrue(page.isVisible("[class='success_icon']"));
+    }
+
+    if (stopBeforeSubmit.equals("stop")){
+      actionsHelper.waiter(50000);
+    }
+
 //    } else {
 //      System.out.println("Вы исчерпали месячный лимит бесплатных объявлений в данной подкатегории");
 //    }
@@ -330,21 +281,19 @@ public class AddAdPage extends BaseTest {
     page.selectOption(manufacturer, "25319");
     page.selectOption(type, "25305");
     page.setInputFiles(uploadPictureButton, new Path[]{
-            Paths.get("G:\\My Drive\\999\\Car\\pic1.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic2.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic3.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic4.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic5.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic6.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic7.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic8.jpg"),
-            Paths.get("G:\\My Drive\\999\\Car\\pic9.jpg")});
+        Paths.get("G:\\My Drive\\999\\Car\\pic1.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic2.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic3.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic4.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic5.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic6.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic7.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic8.jpg"),
+        Paths.get("G:\\My Drive\\999\\Car\\pic9.jpg")});
     actionsHelper.waiter(5000);
     page.click(phoneCheckbox);
     page.click(phoneswitcher);
     page.click(agreeButton);
-    actionsHelper.waiter(50000);
-
-//    page.click(submitButton);
+    page.click(submitButton);
   }
 }
