@@ -7,11 +7,7 @@ import static utils.Constants.TEXT_CAR_RUS;
 import static utils.Constants.TEXT_SSD_ADD;
 import static utils.Constants.TEXT_SSD_TITLE;
 
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import utils.ActionsHelper;
 import core.BaseTest;
 import java.nio.file.Path;
@@ -22,7 +18,7 @@ import org.testng.Assert;
 public class AddAdPage extends BaseTest {
 
   private Page page;
-  ActionsHelper actionsHelper = new ActionsHelper(page);
+  ActionsHelper actionsHelper = new ActionsHelper();
 
   public AddAdPage(Page page) {
     this.page = page;
@@ -87,20 +83,6 @@ public class AddAdPage extends BaseTest {
     page.click("[type='submit']");
   }
 
-  public void getNumberOAttribute() {
-    List<ElementHandle> elements = page.querySelectorAll("[data-test-item-type='standard']");
-    Map<String, Integer> elementCount = new HashMap<>();
-
-    for (ElementHandle element : elements) {
-      String attributeValue = element.getAttribute("data-test-item-state");
-      elementCount.put(attributeValue, elementCount.getOrDefault(attributeValue, 0) + 1);
-    }
-
-    for (Map.Entry<String, Integer> entry : elementCount.entrySet()) {
-      System.out.println(entry.getKey() + ": " + entry.getValue());
-    }
-  }
-
 
   public void getNotifications(String user) {
     page.hover("[id='m__user_panel']");
@@ -110,8 +92,11 @@ public class AddAdPage extends BaseTest {
 //        ? "There are " + numberOfNotifications + " notifications for the user:       " + user
 //        : "There are no notifications for the:           " + user);
     System.out.println("---> " + user);
+    if (numberOfNotifications != 0) {
+      System.out.println("-------------------------------------------> There is notification for " + user);
+    }
     System.out.println("Notifications = " + numberOfNotifications);
-    getNumberOAttribute();
+    actionsHelper.getNumberOAttribute(user, page);
     System.out.println("========================");
   }
 
@@ -255,8 +240,8 @@ public class AddAdPage extends BaseTest {
     page.selectOption(privod, "5");
     page.selectOption(colour, "19");
     page.setInputFiles(uploadPictureButton, new Path[]{
-        Paths.get("G:\\My Drive\\999\\Fabia\\pic1.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic2.jpg"),
+        Paths.get("G:\\My Drive\\999\\Fabia\\pic1.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic3.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic4.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic5.jpg"),
@@ -274,12 +259,12 @@ public class AddAdPage extends BaseTest {
 
     page.click(agreeButton);
 
-    if (!stopBeforeSubmit.equals("stop")){
+    if (!stopBeforeSubmit.equals("stop")) {
       page.click(submitButton);
       Assert.assertTrue(page.isVisible("[class='success_icon']"));
     }
 
-    if (stopBeforeSubmit.equals("stop")){
+    if (stopBeforeSubmit.equals("stop")) {
       actionsHelper.waiter(50000);
     }
 
