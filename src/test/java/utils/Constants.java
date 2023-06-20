@@ -10,7 +10,7 @@ public class Constants {
       + "- 2 ключа (один новый)\n"
       + "- Минимальный пробег\n"
       + "- Один владелец\n"
-      + "- QR коды, или чат 999.md\n"
+      + "- Instagram: mts_auto7\n"
 //      + "Telegram canal: https://t.me/MTS_AutoVentas\n"
 //      + "Instagram:     https://www.instagram.com/p/CthLp1ZootP\n"
       + "\n"
@@ -27,7 +27,7 @@ public class Constants {
       + "- Parcurs minim\n"
       + "- Procurata de la Daac Hermes\n"
       + "- Sunt primul proprietar a masinei\n"
-      + "- QR din poze, sau chat 999.md";
+      + "- Instagram: mts_auto7";
 
   public static final String TEXT_SSD_TITLE = "Kingston NV2 500Gb PCIe 4.0 — 2шт по 620/шт или 1 шт по 670";
   //  private final String textSSDToAdd = "Nou, sigilat, original\n"
