@@ -28,8 +28,8 @@ public class Search999Test extends BaseTest {
 
   public static Boolean setHeadless = true;
 
-  String login = "thurmankovacek";
-  String password = "Thurmankovacek$";
+  String login = "joslynluettgen";
+  String password = "Joslynluettgen$";
 
   @Test
   public void skodaFabia() {
@@ -120,5 +120,8 @@ public class Search999Test extends BaseTest {
 
     addAdPage.logOut("thurmankovacek", "Thurmankovacek$");
     addAdPage.getNotifications("thurmankovacek");
+
+    addAdPage.logOut("joslynluettgen", "Joslynluettgen$");
+    addAdPage.getNotifications("joslynluettgen");
   }
 }

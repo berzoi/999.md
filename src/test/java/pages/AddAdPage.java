@@ -246,8 +246,8 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\Fabia\\pic4.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic5.jpg"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic6.jpg"),
-        Paths.get("G:\\My Drive\\999\\Fabia\\pic7.png"),
-        Paths.get("G:\\My Drive\\999\\Fabia\\pic8.png"),
+//        Paths.get("G:\\My Drive\\999\\Fabia\\pic7.png"),
+//        Paths.get("G:\\My Drive\\999\\Fabia\\pic8.png"),
         Paths.get("G:\\My Drive\\999\\Fabia\\pic9.png")});
 
     actionsHelper.waiter(5000);
@@ -296,8 +296,8 @@ public class AddAdPage extends BaseTest {
         Paths.get("G:\\My Drive\\999\\Car\\pic8.jpg"),
         Paths.get("G:\\My Drive\\999\\Car\\pic9.jpg")});
     actionsHelper.waiter(5000);
-    page.click(phoneCheckbox);
-    page.click(phoneswitcher);
+//    page.click(phoneCheckbox);
+//    page.click(phoneswitcher);
     page.click(agreeButton);
     page.click(submitButton);
   }
