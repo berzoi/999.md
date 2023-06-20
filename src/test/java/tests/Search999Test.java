@@ -42,7 +42,7 @@ public class Search999Test extends BaseTest {
 //    logInPage.logIn(USERMDD_02_LOGIN, USERMDD_02_PASSWORD);
 //    logInPage.logIn(XVM_2_LOGIN, XVM_2_PASSWORD);
     logInPage.logIn(login, password);
-    addAdPage.addCar("rus", "no", "go");
+    addAdPage.addCar("rus", "no", "stop");
   }
 
   @Test

@@ -191,7 +191,7 @@ public class AddAdPage extends BaseTest {
     page.click(selectSSDSubCategory);
     page.fill(title, TEXT_SSD_TITLE);
     page.fill(adTextForm, TEXT_SSD_ADD);
-    page.fill(price, "620");
+    page.fill(price, "700");
     page.selectOption(type, "20734");
     page.selectOption(manufacturer, "24698");
     page.selectOption(formFactor, "26803");
