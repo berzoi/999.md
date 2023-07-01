@@ -71,7 +71,7 @@ public class Search999Test extends BaseTest {
 
     LogInPage logInPage = new LogInPage(page);
     AddAdPage addAdPage = new AddAdPage(page);
-    logInPage.logIn(DOUBLE_A_LOGIN, DOUBLE_A_PASSWORD);
+    logInPage.logIn(ZOTAC522_LOGIN, ZOTAC522_PASSWORD);
     addAdPage.q35();
     Assert.assertTrue(page.isVisible("[class='success_icon']"));
   }

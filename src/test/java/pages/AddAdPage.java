@@ -163,11 +163,10 @@ public class AddAdPage extends BaseTest {
     page.fill(title, "Anker SoundCore Life Q35 Blue");
     page.fill(adTextForm, "https://ru.soundcore.com/products/naushniki/polnorazmernye/life-q-35-A3027\n"
         + "\n"
-        + "Наушники сделаны для американского рынка и куплены в США.\n"
+        + "Наушники сделаны для американского рынка и куплены в США."
         + "\n"
-        + "Граждане МОШЕННИКИ - Почтой и курьером не отправляю."
         + "=============================\n"
-        + "06011.8853");
+        + "Граждане МОШЕННИКИ - Почтой и курьером не отправляю.\n");
 
     page.fill(tagTextForm, "SoundCore, Q35, Anker");
     page.fill(price, "2100");
